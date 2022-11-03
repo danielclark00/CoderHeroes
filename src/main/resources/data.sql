@@ -61,3 +61,49 @@ insert into messages (title, message, conversation_id, sent_by_profile_id)
 insert into messages (title, message, conversation_id, sent_by_profile_id)
     values ('Where is my achievement?', 'my achievement didn''t pop up when I did course.', 5, 8);
 
+-- SEED programs
+
+insert into programs (program_name, program_description)
+    values ('Codercamp', 'Students build their own app based on their own interest');
+
+insert into programs (program_name, program_description)
+    values ('Codersitters', 'Coding through play, coding + babysitting (not just code, also creativity)');
+
+insert into programs (program_name, program_description)
+    values ('Coderyoga', 'Kids learn coding basics through yoga stories and exercise');
+
+-- SEED admins
+
+insert into admins (profile_id) values (7);
+
+-- SEED instructors
+
+insert into instructors (profile_id, instructor_name, rating, bio, status, approved_by)
+    values (3, 'Brianne Caplan', 2, 'I love spaghetti and code, but not the two together.', false, 1);
+
+insert into instructors (profile_id, instructor_name, rating, bio, status, approved_by)
+    values (8, 'Adam Smith', 5, 'Coding is life.', true, 1);
+
+-- SEED instructors_program_types
+
+insert into instructors_program_types (instructor_id, program_id) values (1, 1);
+
+insert into instructors_program_types (instructor_id, program_id) values (1, 2);
+
+insert into instructors_program_types (instructor_id, program_id) values (2, 3);
+
+-- SEED courses
+
+insert into courses (course_name, course_description, days_of_week, max_size, enrolled_students, min_age,
+    max_age, instructor_id, program_id, start_time, end_time, start_date, end_date, number_of_sessions,
+    difficulty, session_type, syllabus_link)
+    values ('App Building Fundamentals', 'A month-long course where students with design, build, and deploy an app from beginning to end!',
+    '{"Monday"}', 20, 0, 7, 12, 1, 1, '08:00:00', '12:30:00', '04/04/2022', '04/28/2022', 4, 'Easy', 'Group',
+    'https://docs.google.com');
+
+insert into courses (course_name, course_description, days_of_week, max_size, enrolled_students, min_age,
+    max_age, instructor_id, program_id, start_time, end_time, start_date, end_date, number_of_sessions,
+    difficulty, session_type, syllabus_link)
+    values ('Mindful Design', 'Students will learn about creativity and web design basics',
+    '{"Wednesday", "Friday"}', 12, 0, 6, 10, 2, 3, '15:30:00', '17:45:00', '04/04/2022', '04/28/2022', 8, 'Medium', '1-on-1',
+    'https://docs.google.com');
