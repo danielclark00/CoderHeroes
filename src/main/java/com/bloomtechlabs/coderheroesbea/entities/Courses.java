@@ -1,7 +1,5 @@
 package com.bloomtechlabs.coderheroesbea.entities;
 
-
-
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
