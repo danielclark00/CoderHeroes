@@ -11,13 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "courses")
-
-//@Typ
-//@TypeDef(name = "list-array", typeClass = ArrayType.class)
-//@TypeDef(
-//        name = "list-array",
-//        typeClass = ListArrayType.class
-//)
 public class Courses {
     private int course_id;
     private String course_name;
