@@ -200,3 +200,19 @@ CREATE TABLE IF NOT EXISTS courses
         ON UPDATE NO ACTION
         ON DELETE CASCADE
 );
+
+-- MIGRATION TABLE newsfeed
+DROP TABLE IF EXISTS newsfeed CASCADE;
+DROP SEQUENCE IF EXISTS newsfeed_newsfeed_id_seq;
+CREATE SEQUENCE IF NOT EXISTS newsfeed_newsfeed_id_seq
+  start 1
+  increment 1;
+CREATE TABLE IF NOT EXISTS newsfeed
+(
+    newsfeed_id integer NOT NULL DEFAULT nextval('newsfeed_newsfeed_id_seq'::regclass),
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    link character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    description text COLLATE pg_catalog."default" NOT NULL,
+    posted_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT newsfeed_pkey PRIMARY KEY (newsfeed_id)
+);

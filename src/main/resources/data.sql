@@ -107,3 +107,19 @@ insert into courses (course_name, course_description, days_of_week, max_size, en
     values ('Mindful Design', 'Students will learn about creativity and web design basics',
     '{"Wednesday", "Friday"}', 12, 0, 6, 10, 2, 3, '15:30:00', '17:45:00', '04/04/2022', '04/28/2022', 8, 'Medium', '1-on-1',
     'https://docs.google.com');
+
+-- SEED newsfeed
+
+insert into newsfeed (title, link, description)
+    values('Check out these coding camps!', 'https://www.idtech.com/', 'This is great way to learn more about the coding world!');
+
+insert into newsfeed (title, link, description)
+    values('Always check the docs!', 'https://developer.mozilla.org/en-US/',
+    'Make sure to check the documentations if you are looking for a method to use and are not sure what the precise name is!');
+
+insert into newsfeed (title, link, description)
+    values('Practice your algorithms!', 'https://leetcode.com/', 'Sign up and test your problem-solving skills!');
+
+insert into newsfeed (title, link, description)
+    values('Robot dog learns to walk in one hour', 'https://www.sciencedaily.com/releases/2022/07/220718122229.htm',
+    'Like a newborn animal, a four-legged robot stumbles around during its first walking attempts. But while a foal or a giraffe needs much longer to master walking, the robot learns to move forward fluently in just one hour. A computer program acts as the artificial presentation of the animal''s spinal cord, and learns to optimize the robot''s movement in a short time. The artificial neural network is not yet ideally adjusted at the beginning, but rapidly self-adjusts.');
