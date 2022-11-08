@@ -123,3 +123,37 @@ insert into newsfeed (title, link, description)
 insert into newsfeed (title, link, description)
     values('Robot dog learns to walk in one hour', 'https://www.sciencedaily.com/releases/2022/07/220718122229.htm',
     'Like a newborn animal, a four-legged robot stumbles around during its first walking attempts. But while a foal or a giraffe needs much longer to master walking, the robot learns to move forward fluently in just one hour. A computer program acts as the artificial presentation of the animal''s spinal cord, and learns to optimize the robot''s movement in a short time. The artificial neural network is not yet ideally adjusted at the beginning, but rapidly self-adjusts.');
+
+
+-- SEED parents
+
+insert into parents (profile_id) values (4);
+
+-- SEED children
+
+insert into children (parent_id, profile_id, username, age)
+    values (1, 5, 'ILoveFortnite', 8);
+
+-- SEED feedback_badges
+
+insert into feedback_badges (name, image) values ('Bright Idea!', 'brightidea');
+
+insert into feedback_badges (name, image) values ('Caring Helper!', 'caringhelper');
+
+insert into feedback_badges (name, image) values ('Cool Coder!', 'coolcoder');
+
+insert into feedback_badges (name, image) values ('Daily Champion!', 'dailychampion');
+
+insert into feedback_badges (name, image) values ('Designer!', 'designer');
+
+insert into feedback_badges (name, image) values ('Organized!', 'organized');
+
+insert into feedback_badges (name, image) values ('Personal Growth!', 'personalgrowth');
+
+insert into feedback_badges (name, image) values ('Team Player!', 'teamplayer');
+
+-- SEED student_badges
+
+insert into student_badges (child_id, badge_id) values (1, 1);
+
+insert into student_badges (child_id, badge_id) values (1, 3);
