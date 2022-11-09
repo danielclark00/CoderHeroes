@@ -11,6 +11,7 @@ public class User {
     @Pattern(regexp="^[a-zA-Z ]+$", message = "name must be a string")
     private String username;
 
+
     private String id;
 
     @NotNull(message = "email is required")
