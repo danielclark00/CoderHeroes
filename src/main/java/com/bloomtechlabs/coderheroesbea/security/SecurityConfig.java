@@ -1,6 +1,5 @@
-package com.bloomtechlabs.security;
+package com.bloomtechlabs.coderheroesbea.security;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -46,8 +45,9 @@ public class SecurityConfig {
          */
         http.authorizeRequests()
                 .mvcMatchers("/").permitAll()
-                .mvcMatchers("/**").authenticated()
-                .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
+                .anyRequest().authenticated()
+//                .mvcMatchers("/**").authenticated()     // Removed
+//                .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages") // Removed
                 .and().cors()
                 .configurationSource(corsConfigurationSource())
                 .and().oauth2ResourceServer().jwt();

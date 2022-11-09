@@ -1,4 +1,4 @@
-package com.bloomtechlabs.security;
+package com.bloomtechlabs.coderheroesbea.security;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
