@@ -36,24 +36,30 @@ public class SecurityConfig {
     @Value("${allowed.origin}")
     private List<String> allowedOrigin;
 
+    /**
+     * This is where we configure the security required for our endpoints and setup
+     * our app to serve as
+     * an OAuth2 Resource Server, using JWT validation.
+     * @param http
+     * @return SecurityFilterChain
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        /*
-         * This is where we configure the security required for our endpoints and setup
-         * our app to serve as
-         * an OAuth2 Resource Server, using JWT validation.
-         */
+
         http.authorizeRequests()
                 .mvcMatchers("/").permitAll()
                 .anyRequest().authenticated()
-//                .mvcMatchers("/**").authenticated()     // Removed
-//                .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages") // Removed
                 .and().cors()
                 .configurationSource(corsConfigurationSource())
                 .and().oauth2ResourceServer().jwt();
         return http.build();
     }
 
+    /**
+     * Configures cross-origin requests for GET,HEAD, and POST requests.
+     * @return CorsConfigurationSource
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -69,6 +75,10 @@ public class SecurityConfig {
         return source;
     }
 
+    /**
+     * Validates and Decodes data of a jwt
+     * @return JwtDecoder
+     */
     @Bean
     JwtDecoder jwtDecoder() {
         /*
@@ -77,7 +87,7 @@ public class SecurityConfig {
          * indeed intended for our app. Adding our own validator is easy to do:
          */
 
-        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(issuer);
+        NimbusJwtDecoder jwtDecoder = JwtDecoders.fromOidcIssuerLocation(issuer);
 
         OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(audience);
         OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
