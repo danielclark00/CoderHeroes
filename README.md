@@ -17,6 +17,5 @@ Labs teams must follow all [Labs Engineering Standards](https://bloomtechlabs.gi
 
 - `awsaccesskey` - key to access aws instance local/deployed
 - `awssecretkey` - authorization token for aws instance (eg. SUPERSECRET)
-- `dynamodburl` - connection string for dynamo
 
 See application-dev.properties for example values
