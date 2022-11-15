@@ -216,3 +216,82 @@ CREATE TABLE IF NOT EXISTS newsfeed
     posted_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT newsfeed_pkey PRIMARY KEY (newsfeed_id)
 );
+
+-- MIGRATION TABLE parents
+DROP TABLE IF EXISTS parents CASCADE;
+DROP SEQUENCE IF EXISTS parents_parent_id_seq;
+CREATE SEQUENCE IF NOT EXISTS parents_parent_id_seq
+  start 1
+  increment 1;
+CREATE TABLE IF NOT EXISTS parents
+(
+    parent_id integer NOT NULL DEFAULT nextval('parents_parent_id_seq'::regclass),
+    profile_id integer NOT NULL,
+    CONSTRAINT parents_pkey PRIMARY KEY (parent_id),
+    CONSTRAINT parents_profile_id_unique UNIQUE (profile_id),
+    CONSTRAINT parents_profile_id_foreign FOREIGN KEY (profile_id)
+        REFERENCES profiles (profile_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+);
+
+-- MIGRATION TABLE children
+DROP TABLE IF EXISTS children CASCADE;
+DROP SEQUENCE IF EXISTS children_child_id_seq;
+CREATE SEQUENCE IF NOT EXISTS children_child_id_seq
+  start 1
+  increment 1;
+CREATE TABLE IF NOT EXISTS children
+(
+    child_id integer NOT NULL DEFAULT nextval('children_child_id_seq'::regclass),
+    profile_id integer NOT NULL,
+    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    age integer NOT NULL,
+    parent_id integer NOT NULL,
+    CONSTRAINT children_pkey PRIMARY KEY (child_id),
+    CONSTRAINT children_profile_id_unique UNIQUE (profile_id),
+    CONSTRAINT children_parent_id_foreign FOREIGN KEY (parent_id)
+        REFERENCES parents (parent_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT children_profile_id_foreign FOREIGN KEY (profile_id)
+        REFERENCES profiles (profile_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+);
+
+-- MIGRATION TABLE feedback_badges
+DROP TABLE IF EXISTS feedback_badges CASCADE;
+DROP SEQUENCE IF EXISTS feedback_badges_badge_id_seq;
+CREATE SEQUENCE IF NOT EXISTS feedback_badges_badge_id_seq
+  start 1
+  increment 1;
+CREATE TABLE IF NOT EXISTS feedback_badges
+(
+    badge_id integer NOT NULL DEFAULT nextval('feedback_badges_badge_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default",
+    image character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT feedback_badges_pkey PRIMARY KEY (badge_id)
+);
+
+-- MIGRATION TABLE student_badges
+DROP TABLE IF EXISTS student_badges CASCADE;
+DROP SEQUENCE IF EXISTS student_badges_student_badge_id_seq;
+CREATE SEQUENCE IF NOT EXISTS student_badges_student_badge_id_seq
+  start 1
+  increment 1;
+CREATE TABLE IF NOT EXISTS student_badges
+(
+    student_badge_id integer NOT NULL DEFAULT nextval('student_badges_student_badge_id_seq'::regclass),
+    child_id integer NOT NULL,
+    badge_id integer NOT NULL,
+    CONSTRAINT student_badges_pkey PRIMARY KEY (student_badge_id),
+    CONSTRAINT student_badges_badge_id_foreign FOREIGN KEY (badge_id)
+        REFERENCES feedback_badges (badge_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT student_badges_child_id_foreign FOREIGN KEY (child_id)
+        REFERENCES children (child_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+);
