@@ -14,3 +14,6 @@ Below are links to my contributions to the project:
 - [added initial files for auth0 validation](https://github.com/danielclark00/coder-heroes-be-a/commit/59a97a5aae4e9d2e1e57c87624ea5b8910e7c0ce)
 - [added application prop back](https://github.com/danielclark00/coder-heroes-be-a/commit/0a48d71fde385de5deec444c9092688e823e75e3)
 - [Added mockup of Controller class](https://github.com/danielclark00/coder-heroes-be-a/commit/cdfd32cbffec269c53e4db769e63c6445ed3bbb9)
+- [API endpoints yaml file](https://github.com/BloomTech-Labs/coder-heroes-docs/blob/main/api_endpoints.yaml)
+- [Design Docs](https://github.com/BloomTech-Labs/coder-heroes-docs/blob/main/backend_design_doc.md)
+- [Jira Ticket Suggestions](https://github.com/BloomTech-Labs/coder-heroes-docs/blob/main/jira_tickets.md)
